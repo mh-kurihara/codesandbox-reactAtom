@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const UserCard = () => {
+export const UserCard = (props) => {
+  const { user } = props;
   return (
     <div>
       <img
@@ -11,7 +12,7 @@ export const UserCard = () => {
       />
 
       <p>名前</p>
-      <dl>
+      <SDl>
         <dt>メール</dt>
         <dd>xxx@aaa.com</dd>
         <dt>TEL</dt>
@@ -20,13 +21,14 @@ export const UserCard = () => {
         <dd>●●商事</dd>
         <dt>WEB</dt>
         <dd>fff.com</dd>
-      </dl>
+      </SDl>
     </div>
   );
 };
 
 const SDl = styled.dl`
   text-align: left;
+  margin-bottom: 0px;
   dt {
     float: left;
   }
