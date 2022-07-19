@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { SearchInput } from "../molecules/SearchInput";
 import { UserCard } from "../organisms/user/UserCard";
+import { useLocation } from "react-router-dom";
 
 const users = [...Array(10).keys()].map((val) => {
   return {
@@ -28,13 +29,18 @@ const users = [...Array(10).keys()].map((val) => {
 // };
 
 export const Users = () => {
+  // 画面遷移時のステートを受け渡す機能
+  const { state } = useLocation();
+  // ステートに値が入らないNULLで渡ってくる場合に以下でセット
+  const isAdmin = state ? state.isAdmin : false;
+  console.log(state);
   return (
     <SContainer>
       <h2>ユーザ一覧</h2>
       <SearchInput />
       <SUserArea>
-        {users.map((user) => (
-          <UserCard key={user.id} user={user} />
+        {users.map((obj) => (
+          <UserCard key={obj.id} user={obj} isAdmin={isAdmin} />
         ))}
       </SUserArea>
     </SContainer>
