@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { SearchInput } from "../molecules/SearchInput";
 import { UserCard } from "../organisms/user/UserCard";
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserProvider";
 
 const users = [...Array(10).keys()].map((val) => {
   return {
@@ -30,17 +32,25 @@ const users = [...Array(10).keys()].map((val) => {
 
 export const Users = () => {
   // 画面遷移時のステートを受け渡す機能
-  const { state } = useLocation();
+  //  const { state } = useLocation();
   // ステートに値が入らないNULLで渡ってくる場合に以下でセット
-  const isAdmin = state ? state.isAdmin : false;
-  console.log(state);
+  //  const isAdmin = state ? state.isAdmin : false;
+  const { userInfo, setUserInfo } = useContext(UserContext);
+  const onClickSwitch = () => {
+    alert("wwwww");
+    setUserInfo({ isAdmin: !userInfo.isAdmin });
+  };
   return (
     <SContainer>
       <h2>ユーザ一覧</h2>
       <SearchInput />
+      <br />
       <SUserArea>
-        {users.map((obj) => (
+        {/** users.map((obj) => (
           <UserCard key={obj.id} user={obj} isAdmin={isAdmin} />
+      ))*/}
+        {users.map((obj) => (
+          <UserCard key={obj.id} user={obj} />
         ))}
       </SUserArea>
     </SContainer>
