@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { UserContext } from "../../providers/UserProvider";
 
 export const UserIconWithName = (props) => {
+  console.log("UserIconWithName");
+
   // const { src, name, isAdmin } = props;
   const { image, name } = props;
   // UserContext配下のContextを指定することで参照
