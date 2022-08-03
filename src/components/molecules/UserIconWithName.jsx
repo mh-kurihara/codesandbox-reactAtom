@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { UserContext } from "../../providers/UserProvider";
+// 値参照ライブラリ（）
+import { useRecoilValue } from "recoil";
+import { userState } from "../../store/userState";
 
 export const UserIconWithName = (props) => {
   console.log("UserIconWithName");
@@ -8,7 +11,8 @@ export const UserIconWithName = (props) => {
   // const { src, name, isAdmin } = props;
   const { image, name } = props;
   // UserContext配下のContextを指定することで参照
-  const { userInfo } = useContext(UserContext);
+  //  const { userInfo } = useContext(UserContext);
+  const userInfo = useRecoilValue(userState);
   const isAdmin = userInfo ? userInfo.isAdmin : false;
 
   return (
